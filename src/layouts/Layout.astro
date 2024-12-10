@@ -21,13 +21,20 @@ const description = "Learn about Hooks in React";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/public-image.jpg" />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/CastDev-j/05-hook-app/refs/heads/maincat/public/public-image.jpg"
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:width" content="460" />
+    <meta property="og:image:height" content="345" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body class="bg-zinc-50">
     <Header title="Hooks In React" />
-      <slot />
+    <slot />
     <Footer />
   </body>
 </html>
