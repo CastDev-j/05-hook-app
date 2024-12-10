@@ -1,11 +1,92 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import CardComponent from "@/components/CardComponent.astro";
+import Layout from "../layouts/Layout.astro";
+import { UseState, CustomHook } from "@/components/hooks";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = "Hooks React | Inicio";
+
+const hooks: any = {
+  useState: {
+    title: "useState",
+    subtitle:
+      "Hook that allows you to add state to your functional components.",
+    description:
+      "useState is a Hook that allows you to have state variables in functional components. It returns an array with two elements. The first element is the current state value, and the second element is a function that lets you update it.",
+    color: {
+      decoration: "bg-blue-200",
+      border: "border-blue-300",
+      background: "bg-blue-400",
+    },
+  },
+  customHook: {
+    title: "Custom Hook",
+    subtitle:
+      "A custom Hook is a JavaScript function that starts with 'use' and may call other Hooks.",
+    description:
+      "Custom Hooks allow you to reuse stateful logic across components. They are typically created to extract reusable logic from components into separate functions. For example, 'useFriendStatus' is a custom Hook that tracks whether a friend is online or not.",
+    color: {
+      decoration: "bg-rose-200",
+      border: "border-rose-300",
+      background: "bg-rose-400",
+    },
+  },
+  useEffect: {
+    title: "useEffect",
+    subtitle:
+      "The Effect Hook lets you perform side effects in function components.",
+    description:
+      "By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed and call it after performing the DOM updates.",
+    color: {
+      decoration: "bg-violet-200",
+      border: "border-violet-300",
+      background: "bg-violet-400",
+    },
+  }
+};
+
+const { useState, customHook, useEffect} = hooks;
 ---
 
-<Layout>
-	<Welcome />
+<Layout {title}>
+  <main
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 fade-up w-full p-6"
+  >
+    <CardComponent
+      title={useState.title}
+      subtitle={useState.subtitle}
+      description={useState.description}
+      color={useState.color}
+    >
+      <UseState client:load />
+    </CardComponent>
+
+    <CardComponent
+      title={customHook.title}
+      subtitle={customHook.subtitle}
+      description={customHook.description}
+      color={customHook.color}
+    >
+      <CustomHook initialState={0} client:load />
+    </CardComponent>
+
+    <CardComponent
+      title={useEffect.title}
+      subtitle={useEffect.subtitle}
+      description={useEffect.description}
+      color={useEffect.color}
+    >
+    </CardComponent>
+
+    <CardComponent
+      title={customHook.title}
+      subtitle={customHook.subtitle}
+      description={customHook.description}
+      color={{
+        decoration: "bg-yellow-200",
+        border: "border-yellow-300",
+        background: "bg-yellow-400",
+      }}
+    >
+    </CardComponent>
+  </main>
 </Layout>

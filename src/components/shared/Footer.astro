@@ -1,0 +1,78 @@
+---
+
+---
+
+<footer class="p-6 rounded-lg w-full text-zinc-800 bg-zinc-50 fade-up">
+  <div class="flex flex-col justify-center items-center gap-6">
+    <div class="text-center md:text-left">
+      <h2 class="text-2xl font-light text-zinc-600 mb-2">
+        React Hooks Practice App
+      </h2>
+      <p class="text-sm font-normal text-zinc-700">
+        A simple app built with React to help you practice and learn hooks.
+      </p>
+    </div>
+
+    <nav class="flex space-x-4 text-sm text-center font-normal text-zinc-700">
+      <a href="https://github.com/CastDev-j" class="hover:underline">About</a>
+      <a href="https://castdev-j.netlify.app/" class="hover:underline"
+        >My Portfolio</a
+      >
+      <a href="mailto:andres2004_cj@outlook.com" class="hover:underline"
+        >Contact</a
+      >
+    </nav>
+  </div>
+
+  <hr class="border-t border-zinc-300 my-6" />
+
+  <div class="flex justify-center">
+    <div class="flex items-center space-x-4">
+      <span
+        class="block w-6 h-6 bg-yellow-400 rounded-full animate-pulse"
+        aria-hidden="true"></span>
+      <p class="text-zinc-700 font-normal texto-gen" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <script>
+    newFunction();
+
+    function newFunction() {
+      const statusText = document.querySelector(".texto-gen") as HTMLElement;
+      const phrases = [
+        "Everything is working",
+        "CastDev-j",
+        "React Hooks Component",
+        "Hooks Practice App",
+        "Learning in progress",
+        "Fetching Data...",
+      ];
+      let index = 0;
+      let isDeleting = false;
+      let phraseIndex = 0;
+
+      function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+        if (!isDeleting && index < currentPhrase.length) {
+          statusText.textContent = currentPhrase.substring(0, index + 1) + "|";
+          index++;
+          setTimeout(typeEffect, 100);
+        } else if (isDeleting && index > 0) {
+          statusText.textContent = currentPhrase.substring(0, index - 1) + "|";
+          index--;
+          setTimeout(typeEffect, 100);
+        } else {
+          isDeleting = !isDeleting;
+          if (!isDeleting) {
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+          setTimeout(typeEffect, 1000);
+        }
+      }
+
+      typeEffect();
+    }
+
+  </script>
+</footer>
