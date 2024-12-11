@@ -1,7 +1,8 @@
 ---
 import CardComponent from "@/components/CardComponent.astro";
 import Layout from "../layouts/Layout.astro";
-import { UseState, CustomHook } from "@/components/hooks";
+import { UseState, CustomHook, FormCustomHook } from "@/components/hooks";
+import { UseEffect } from "@/components/hooks/UseEffect";
 
 const title = "Hooks React | Inicio";
 
@@ -9,9 +10,9 @@ const hooks: any = {
   useState: {
     title: "useState",
     subtitle:
-      "Hook that allows you to add state to your functional components.",
+      "Hook que te permite agregar estado a tus componentes funcionales.",
     description:
-      "useState is a Hook that allows you to have state variables in functional components. It returns an array with two elements. The first element is the current state value, and the second element is a function that lets you update it.",
+      "useState es un Hook que te permite tener variables de estado en componentes funcionales. Devuelve un array con dos elementos. El primer elemento es el valor actual del estado, y el segundo elemento es una función que te permite actualizarlo.",
     color: {
       decoration: "bg-blue-200",
       border: "border-blue-300",
@@ -21,9 +22,9 @@ const hooks: any = {
   customHook: {
     title: "Custom Hook",
     subtitle:
-      "A custom Hook is a JavaScript function that starts with 'use' and may call other Hooks.",
+      "Un Hook personalizado es una función de JavaScript que comienza con 'use' y puede llamar a otros Hooks.",
     description:
-      "Custom Hooks allow you to reuse stateful logic across components. They are typically created to extract reusable logic from components into separate functions. For example, 'useFriendStatus' is a custom Hook that tracks whether a friend is online or not.",
+      "Los Hooks personalizados te permiten reutilizar lógica con estado en varios componentes. Normalmente se crean para extraer lógica reutilizable de los componentes en funciones separadas. Por ejemplo, 'useFriendStatus' es un Hook personalizado que rastrea si un amigo está en línea o no.",
     color: {
       decoration: "bg-rose-200",
       border: "border-rose-300",
@@ -33,24 +34,37 @@ const hooks: any = {
   useEffect: {
     title: "useEffect",
     subtitle:
-      "The Effect Hook lets you perform side effects in function components.",
+      "El Hook de Efecto te permite realizar efectos secundarios en componentes funcionales.",
     description:
-      "By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed and call it after performing the DOM updates.",
+      "Al usar este Hook, le dices a React que tu componente necesita hacer algo después de renderizar. React recordará la función que pasaste y la llamará después de realizar las actualizaciones del DOM.",
     color: {
       decoration: "bg-violet-200",
       border: "border-violet-300",
       background: "bg-violet-400",
     },
-  }
+  },
+  formCustomHook:{
+      title: "Form Custom Hook",
+      subtitle: "Formulario con un custom hook",
+      description: "Este formulario utiliza un custom hook para mejorar la legibilidad y reutilización del componente.",
+      color: {
+        decoration: "bg-teal-200",
+        border: "border-teal-300",
+        background: "bg-teal-400",
+      },
+
+    }
 };
 
-const { useState, customHook, useEffect} = hooks;
+const { useState, customHook, useEffect, formCustomHook} = hooks;
 ---
 
 <Layout {title}>
   <main
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 fade-up w-full p-6"
-  >
+  class="grid grid-cols-1 md:grid-cols-2 gap-4 fade-up w-full p-6"
+  style="grid-auto-rows: auto;"
+>
+
     <CardComponent
       title={useState.title}
       subtitle={useState.subtitle}
@@ -75,18 +89,16 @@ const { useState, customHook, useEffect} = hooks;
       description={useEffect.description}
       color={useEffect.color}
     >
+    <UseEffect client:load />
     </CardComponent>
 
     <CardComponent
-      title={customHook.title}
-      subtitle={customHook.subtitle}
-      description={customHook.description}
-      color={{
-        decoration: "bg-yellow-200",
-        border: "border-yellow-300",
-        background: "bg-yellow-400",
-      }}
+      title={formCustomHook.title}
+      subtitle={formCustomHook.subtitle}
+      description={formCustomHook.description}
+      color={formCustomHook.color}
     >
+      <FormCustomHook client:load />
     </CardComponent>
   </main>
 </Layout>
